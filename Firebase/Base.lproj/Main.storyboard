@@ -39,12 +39,18 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TST-vm-eqT">
                                                 <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="40"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Register"/>
+                                                <buttonConfiguration key="configuration" style="gray" title="Create User"/>
+                                                <connections>
+                                                    <action selector="CreateUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yzQ-1P-7dG"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1CN-Rg-5Px">
                                                 <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="40"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Sign-in"/>
+                                                <buttonConfiguration key="configuration" style="gray" title="Log-in"/>
+                                                <connections>
+                                                    <action selector="LogUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e03-h4-FhB"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -60,6 +66,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="W5q-hj-ERj"/>
+                    <connections>
+                        <outlet property="mail" destination="Sqg-eQ-jfa" id="bWq-hs-DpY"/>
+                        <outlet property="password" destination="6Yx-go-K3n" id="tt7-OL-N2s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,6 +92,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ngd-VD-3l5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.64122137404578" y="3.5211267605633805"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jJ1-bl-7kC">
+            <objects>
+                <viewController id="Wza-m9-0wz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X6a-GS-gK4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sKy-C7-Cuq">
+                                <rect key="frame" x="16" y="75" width="361" height="136"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cO-VB-Bjj">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="gCr-Wd-yPA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmg-zU-cc6">
+                                        <rect key="frame" x="0.0" y="48" width="361" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89j-a9-TfY">
+                                        <rect key="frame" x="0.0" y="96" width="361" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Cerrar Sesion"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tOf-hg-frF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sKy-C7-Cuq" firstAttribute="leading" secondItem="tOf-hg-frF" secondAttribute="leading" constant="16" id="axA-7g-qf0"/>
+                            <constraint firstItem="tOf-hg-frF" firstAttribute="trailing" secondItem="sKy-C7-Cuq" secondAttribute="trailing" constant="16" id="lIl-nI-2eW"/>
+                            <constraint firstItem="sKy-C7-Cuq" firstAttribute="top" secondItem="tOf-hg-frF" secondAttribute="top" constant="16" id="w4j-KG-dOf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Zo-5b-nRd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1859" y="4"/>
         </scene>
     </scenes>
     <resources>
