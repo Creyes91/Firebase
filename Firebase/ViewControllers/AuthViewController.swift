@@ -24,13 +24,19 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
         title = "Auth"
         
+        setupGoogleButton()
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func setupGoogleButton()
+    {
         let signInButton = GIDSignInButton()
                 signInButton.center = view.center  // Centrar el botón en la vista
                 view.addSubview(signInButton)
-        
         signInButton.addTarget(self, action: #selector (googleSignin), for: .touchUpInside)
         
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func CreateUser(_ sender: Any) {
