@@ -7,5 +7,9 @@ target 'Firebase' do
 
   pod 'FirebaseAnalytics'
   pod 'FirebaseAuth'
+  pod 'FirebaseCore'
+  pod 'GoogleSignIn'
+
+pod 'GoogleUtilities', '~> 7.0'
 
 end

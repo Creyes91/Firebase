@@ -69,6 +69,7 @@
                     <connections>
                         <outlet property="mail" destination="Sqg-eQ-jfa" id="bWq-hs-DpY"/>
                         <outlet property="password" destination="6Yx-go-K3n" id="tt7-OL-N2s"/>
+                        <segue destination="Wza-m9-0wz" kind="show" identifier="goToHome" id="fdJ-Mi-4di"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -93,16 +94,16 @@
             </objects>
             <point key="canvasLocation" x="136.64122137404578" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="jJ1-bl-7kC">
             <objects>
-                <viewController id="Wza-m9-0wz" sceneMemberID="viewController">
+                <viewController id="Wza-m9-0wz" customClass="HomeViewController" customModule="Firebase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X6a-GS-gK4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sKy-C7-Cuq">
-                                <rect key="frame" x="16" y="75" width="361" height="136"/>
+                                <rect key="frame" x="16" y="119" width="361" height="136"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cO-VB-Bjj">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -135,6 +136,11 @@
                             <constraint firstItem="sKy-C7-Cuq" firstAttribute="top" secondItem="tOf-hg-frF" secondAttribute="top" constant="16" id="w4j-KG-dOf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="dd3-hA-toc"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="2cO-VB-Bjj" id="RAV-39-1UV"/>
+                        <outlet property="typeAuthLabel" destination="Lmg-zU-cc6" id="slV-TW-pDS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Zo-5b-nRd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
