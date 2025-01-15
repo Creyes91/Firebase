@@ -10,6 +10,9 @@ target 'Firebase' do
   pod 'FirebaseCore'
   pod 'GoogleSignIn'
 
-pod 'GoogleUtilities', '~> 7.0'
+  pod 'GoogleUtilities', '~> 7.0'
+
+  
+
 
 end

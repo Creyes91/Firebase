@@ -115,9 +115,9 @@ class AuthViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let HomeViewController = segue.destination as! HomeViewController
         
-        HomeViewController.mail = mail.text
+       // HomeViewController.mail = mail.text
         
-        HomeViewController.typeAuth = checkAuthMethod()
+        //HomeViewController.typeAuth = checkAuthMethod()
         
     }
     
