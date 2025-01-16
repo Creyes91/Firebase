@@ -38,34 +38,17 @@ class AuthViewController: UIViewController {
         signInButton.addTarget(self, action: #selector (googleSignin), for: .touchUpInside)
         
     }
+    
+    func showMessage(type: String, message: String)
+    {
+        let alert = UIAlertController(title: type, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
     @IBAction func CreateUser(_ sender: Any) {
      
-            if let email = mail.text, let pass = password.text
-        {
-                if email.isEmpty || pass.isEmpty
-                {
-                    showMessage(type:"Error", message: "Data Empty")
-                    
-                    return
-                    
-                }
-                
-                
-                Auth.auth().createUser(withEmail: email, password: pass) { authResult, error in
-                    
-                    if let error = error
-                    {
-                        self.showMessage(type: "Error", message: error.localizedDescription)
-                        return
-                    }
-                    else {
-                        self.showMessage(type: "Message", message: "User created successfully")
-                        return
-                        
-                    }
-                }
-            }
+        self.performSegue(withIdentifier: "goToHome", sender: self)
     }
     
     
@@ -105,17 +88,12 @@ class AuthViewController: UIViewController {
         
     }
     
-    func showMessage(type: String, message: String)
-    {
-        let alert = UIAlertController(title: type, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+  
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let HomeViewController = segue.destination as! HomeViewController
+        let RegisterViewController = segue.destination as! RegisterViewController
         
-       // HomeViewController.mail = mail.text
+        RegisterViewController.mail = mail.text
         
         //HomeViewController.typeAuth = checkAuthMethod()
         
@@ -182,7 +160,7 @@ class AuthViewController: UIViewController {
                                                          accessToken: user.accessToken.tokenString)
 
             Auth.auth().signIn(with: credential){ result , error in
-                self.performSegue(withIdentifier: "goToHome", sender: self)
+                
                 
                 guard error == nil
                     
