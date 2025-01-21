@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class RegisterViewController: UIViewController {
     
@@ -20,6 +21,9 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var birthDate: UIDatePicker!
     @IBOutlet weak var genderOptions: UISegmentedControl!
     @IBOutlet weak var aceptButton: UIButton!
+    @IBOutlet weak var adresText: UITextField!
+    @IBOutlet weak var PhoneNumberText: UITextField!
+    
     
     //MARK: Login Data
     
@@ -29,9 +33,7 @@ class RegisterViewController: UIViewController {
     
     //MARK: MENU OPTIONS
     
-    @IBOutlet weak var MenuView: UIView!
-    @IBOutlet weak var LogOutButton: UIButton!
-    @IBOutlet weak var FAButton: UIButton!
+
     
     var menuVisible = false
     
@@ -80,22 +82,7 @@ class RegisterViewController: UIViewController {
     
     
     
-    @IBAction func HiddeMenu(_ sender: Any) {
-        if menuVisible {
-                   // Ocultar el menú
-                   UIView.animate(withDuration: 0.3) {
-                       self.MenuView.frame.origin.x = -420
-                   }
-               } else {
-                   // Mostrar el menú
-                   UIView.animate(withDuration: 0.3) {
-                       self.MenuView.frame.origin.x = 0
-                   }
-               }
-        
-        menuVisible = !menuVisible
-    }
-    
+   
 
     
     @IBAction func LogOut(_ sender: Any) {
@@ -112,19 +99,15 @@ class RegisterViewController: UIViewController {
     
   
     @IBAction func saveUser(_ sender: Any) {
-        if let email = self.emailText.text, let pass = self.passText.text
+     
+        if  validateForm()
         {
-            if email.isEmpty || pass.isEmpty
-            {
-                showMessage(type:"Error", message: "Data Empty")
-                
-                return
-                
-            }
+            let email = emailText.text!
+            let pass = passText.text!
+            let VerifyPass = valPass.text
             
-            
-            Auth.auth().createUser(withEmail: email, password: pass) { authResult, error in
-                
+            if pass == VerifyPass{
+                Auth.auth().createUser(withEmail: email, password: pass) { authResult, error in
                 if let error = error
                 {
                     self.showMessage(type: "Error", message: error.localizedDescription)
@@ -132,11 +115,68 @@ class RegisterViewController: UIViewController {
                 }
                 else {
                     self.showMessage(type: "Message", message: "User created successfully")
+                    self.createUser()
                     return
                     
                 }
             }
+        }else
+            {
+            self.showMessage(type: "Error", message: "The password mismatch")
         }
+        }
+    }
+    
+    private func createUser()
+    {
+        let id = Auth.auth().currentUser!.uid
+        let userName = emailText.text!
+        let name = nameText.text!
+        let lastName = lastNameText.text!
+        let address = adresText.text!
+        let phoneNum = PhoneNumberText.text!
+        let birthDate = birthDate.date
+        let gender = switch genderOptions.selectedSegmentIndex
+        {
+        case 0: Gender.male
+        case 1: Gender.female
+        case 2: Gender.other
+    
+        default:
+            Gender.unespecified
+        }
+        
+        let user = User(id: id, username: userName, firstName: name, lastName: lastName, gender: gender, birthday: birthDate, provider: .basic, profileImageUrl: "nil")
+        
+        let db = Firestore.firestore()
+        do{
+            try db.collection("Users").document(id).setData(from: user)
+            
+            self.showMessage(type:"User Create", message: "Usser created succesfully")
+            
+        } catch {
+            self.showMessage(type: "Error", message: "Algo a ido mal")
+            
+        }
+        
+        
+    }
+    
+    
+    
+    func validateForm() -> Bool
+    {
+        let controls = [nameText,lastNameText,adresText,PhoneNumberText,emailText,passText,valPass]
+        
+        for control in controls {
+            if let text = control?.text , text.isEmpty
+            {
+                showMessage(type:"Error", message: "Error writing user to Firestore")
+                return false
+            }
+        }
+        return true
+        
     }
     
     func showMessage(type: String, message: String)

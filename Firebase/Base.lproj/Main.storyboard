@@ -129,8 +129,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="6Yx-go-K3n" firstAttribute="leading" secondItem="w07-IZ-miN" secondAttribute="leading" constant="16" id="3Hp-Hv-HOj"/>
-                                    <constraint firstItem="Sqg-eQ-jfa" firstAttribute="leading" secondItem="w07-IZ-miN" secondAttribute="leading" id="8O3-UQ-hs2"/>
-                                    <constraint firstAttribute="trailing" secondItem="Sqg-eQ-jfa" secondAttribute="trailing" id="Gjz-cO-7X5"/>
                                     <constraint firstAttribute="trailing" secondItem="6Yx-go-K3n" secondAttribute="trailing" constant="16" id="Gvf-qT-QfA"/>
                                     <constraint firstItem="Sqg-eQ-jfa" firstAttribute="leading" secondItem="w07-IZ-miN" secondAttribute="leading" constant="16" id="XDF-uv-329"/>
                                     <constraint firstAttribute="trailing" secondItem="1CN-Rg-5Px" secondAttribute="trailing" constant="16" id="Xff-x8-Y9k"/>
@@ -196,7 +194,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79y-cz-YmO">
                                         <rect key="frame" x="0.0" y="192" width="361" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ib3-u6-4ez">
                                         <rect key="frame" x="0.0" y="240" width="361" height="40"/>
@@ -234,6 +232,7 @@
                                                     <segment title="">
                                                         <imageReference key="image" image="figure.stand.dress" catalog="system" variableValue="1"/>
                                                     </segment>
+                                                    <segment title=" other"/>
                                                 </segments>
                                             </segmentedControl>
                                         </subviews>
@@ -291,7 +290,9 @@
                     <navigationItem key="navigationItem" style="editor" id="dd3-hA-toc"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="PhoneNumberText" destination="79y-cz-YmO" id="hrE-hx-2eb"/>
                         <outlet property="aceptButton" destination="22B-3n-BId" id="x7u-ZD-LA3"/>
+                        <outlet property="adresText" destination="Qyd-te-Wtr" id="mVW-be-3B2"/>
                         <outlet property="birthDate" destination="Nrz-Gk-DRK" id="o76-KF-lYz"/>
                         <outlet property="emailText" destination="AnR-WC-wk5" id="a1J-Dj-fI0"/>
                         <outlet property="genderOptions" destination="jRy-td-Xi5" id="ACq-Lb-jgE"/>
