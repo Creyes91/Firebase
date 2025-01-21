@@ -39,7 +39,7 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         //fetchData()
-        emailText.text
+        emailText.text = mail
         createButton(for: passText)
         createButton(for: valPass)
         
