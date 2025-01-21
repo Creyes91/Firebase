@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: false)
+       // self.navigationItem.setHidesBackButton(true, animated: false)
         //fetchData()
         emailText.text = mail
         createButton(for: passText)

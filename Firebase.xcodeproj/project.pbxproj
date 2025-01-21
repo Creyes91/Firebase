@@ -17,6 +17,7 @@
 		B25FE46D2D3AC95E006CCB79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B25FE4612D3AC95E006CCB79 /* LaunchScreen.storyboard */; };
 		B25FE46E2D3AC95E006CCB79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B25FE4632D3AC95E006CCB79 /* Main.storyboard */; };
 		B25FE4712D3AC979006CCB79 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25FE4702D3AC979006CCB79 /* User.swift */; };
+		B28EDB022D40002E00991EDF /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28EDB012D40002E00991EDF /* InitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		B25FE4622D3AC95E006CCB79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B25FE4642D3AC95E006CCB79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B25FE4702D3AC979006CCB79 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B28EDB012D40002E00991EDF /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		B2DFAFBC2D356AC50079D28F /* Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Firebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,6 +63,7 @@
 			children = (
 				B25FE4592D3AC95E006CCB79 /* AuthViewController.swift */,
 				B25FE45A2D3AC95E006CCB79 /* RegisterViewController.swift */,
+				B28EDB012D40002E00991EDF /* InitViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			files = (
 				B25FE4662D3AC95E006CCB79 /* AuthViewController.swift in Sources */,
 				B25FE4672D3AC95E006CCB79 /* RegisterViewController.swift in Sources */,
+				B28EDB022D40002E00991EDF /* InitViewController.swift in Sources */,
 				B25FE4682D3AC95E006CCB79 /* AppDelegate.swift in Sources */,
 				B25FE4712D3AC979006CCB79 /* User.swift in Sources */,
 				B25FE4692D3AC95E006CCB79 /* SceneDelegate.swift in Sources */,

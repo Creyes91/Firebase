@@ -24,20 +24,21 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
         title = "Auth"
         
-        setupGoogleButton()
+       // setupGoogleButton()
         
         
         // Do any additional setup after loading the view.
     }
     
-    func setupGoogleButton()
+  /* func setupGoogleButton()
     {
         let signInButton = GIDSignInButton()
                 signInButton.center = view.center  // Centrar el botón en la vista
                 view.addSubview(signInButton)
         signInButton.addTarget(self, action: #selector (googleSignin), for: .touchUpInside)
         
-    }
+    }*/
+    
     
     func showMessage(type: String, message: String)
     {
@@ -46,10 +47,10 @@ class AuthViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    @IBAction func CreateUser(_ sender: Any) {
+   /* @IBAction func CreateUser(_ sender: Any) {
      
-        self.performSegue(withIdentifier: "goToHome", sender: self)
-    }
+        self.performSegue(withIdentifier: "", sender: self)
+    }*/
     
     
         @IBAction func LogUser(_ sender: Any) {
@@ -72,10 +73,10 @@ class AuthViewController: UIViewController {
                         return
                     }
                     else {
-                      /*  self!.showMessage(type: "Message", message: "User Logged succesfully")*/
-                        self?.performSegue(withIdentifier: "goToHome", sender: self)
+                        self!.showMessage(type: "Message", message: "User Logged succesfully")
+                     /*   self?.performSegue(withIdentifier: "goToHome", sender: self)
                         return
-                        
+                        */
                     }
                     
                 }
@@ -136,41 +137,7 @@ class AuthViewController: UIViewController {
         
         
     
-    @objc func googleSignin() {
-        
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
-        // Create Google Sign In configuration object.
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-
-        // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-          guard error == nil else {
-              return
-          }
-
-          guard let user = result?.user,
-            let idToken = user.idToken?.tokenString
-          else {
-              return
-          }
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: user.accessToken.tokenString)
-
-            Auth.auth().signIn(with: credential){ result , error in
-                
-                
-                guard error == nil
-                    
-                else {
-                    return}
-            }
-        }
-        
-        
-    }
+   
     
     
 
