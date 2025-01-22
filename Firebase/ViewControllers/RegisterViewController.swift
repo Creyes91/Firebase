@@ -12,6 +12,8 @@ import FirebaseFirestore
 class RegisterViewController: UIViewController {
     
     var mail: String!
+    
+    var googleRegister: Bool = false
    
     
     //MARK: Register options
@@ -41,7 +43,20 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
        // self.navigationItem.setHidesBackButton(true, animated: false)
         //fetchData()
-        emailText.text = mail
+        if googleRegister, let user = Auth.auth().currentUser
+        {
+            
+            nameText.text = user.displayName
+            lastNameText.text = user.displayName
+            PhoneNumberText.text = user.phoneNumber
+            emailText.text = user.email
+            
+            passText.isHidden = true
+            valPass.isHidden = true
+            
+        }
+        
+        
         createButton(for: passText)
         createButton(for: valPass)
         
@@ -96,7 +111,7 @@ class RegisterViewController: UIViewController {
             let pass = passText.text!
             let VerifyPass = valPass.text
             
-            if pass == VerifyPass{
+            if pass == VerifyPass {
                 Auth.auth().createUser(withEmail: email, password: pass) { authResult, error in
                 if let error = error
                 {

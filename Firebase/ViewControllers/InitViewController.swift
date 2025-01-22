@@ -58,7 +58,8 @@ class InitViewController: UIViewController {
             Auth.auth().signIn(with: credential){ result , error in
                 
                 
-                if let error = error
+                if error != nil
+                    
                 {
                     print ("Error")
                     
@@ -84,10 +85,20 @@ class InitViewController: UIViewController {
                     self.alert.showMessage(type: "Message", message: "User Logged successfully")
                 }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToRegister"{
+            let Form = segue.destination as! RegisterViewController
+            Form.googleRegister = true
             
             
         }
-        
-        
     }
+    
+  
+    
+    
 }

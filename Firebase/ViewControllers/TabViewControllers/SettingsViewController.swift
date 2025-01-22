@@ -25,7 +25,10 @@ class SettingsViewController: UIViewController {
             SessionManager.shared.clearSession()
         } catch let signOutError as NSError {
           print("Error signing out: %@", signOutError)
+            
         }
+        
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 
