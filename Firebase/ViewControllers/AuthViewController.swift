@@ -73,10 +73,14 @@ class AuthViewController: UIViewController {
                         return
                     }
                     else {
+                        guard let user = authResult?.user else {return}
+                        
+                        SessionManager.shared.saveSession(user: user)
+                        
+                        self!.performSegue(withIdentifier: "goToHome", sender: self)
+                        
                         self!.showMessage(type: "Message", message: "User Logged succesfully")
-                     /*   self?.performSegue(withIdentifier: "goToHome", sender: self)
-                        return
-                        */
+                
                     }
                     
                 }
@@ -92,9 +96,11 @@ class AuthViewController: UIViewController {
   
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let RegisterViewController = segue.destination as! RegisterViewController
+      //  let RegisterViewController = segue.destination as! RegisterViewController
         
-        RegisterViewController.mail = mail.text
+        let HomeViewController = segue.destination as! TabViewController
+        
+      //  RegisterViewController.mail = mail.text
         
         //HomeViewController.typeAuth = checkAuthMethod()
         

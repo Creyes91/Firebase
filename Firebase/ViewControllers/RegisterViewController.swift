@@ -85,17 +85,7 @@ class RegisterViewController: UIViewController {
    
 
     
-    @IBAction func LogOut(_ sender: Any) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
-        }
-        
-     //   performSegue(withIdentifier: "toMain", sender: LogOutButton)
-    }
+  
     
   
     @IBAction func saveUser(_ sender: Any) {
@@ -188,15 +178,5 @@ class RegisterViewController: UIViewController {
     
     
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
