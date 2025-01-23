@@ -98,7 +98,7 @@ class AuthViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       //  let RegisterViewController = segue.destination as! RegisterViewController
         
-        let HomeViewController = segue.destination as! TabViewController
+//        let HomeViewController = segue.destination as! TabViewController
         
       //  RegisterViewController.mail = mail.text
         
