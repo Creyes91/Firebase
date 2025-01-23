@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var birthDate: UIDatePicker!
     @IBOutlet weak var genderOptions: UISegmentedControl!
-    @IBOutlet weak var aceptButton: UIButton!
+
     @IBOutlet weak var adresText: UITextField!
     @IBOutlet weak var PhoneNumberText: UITextField!
     
@@ -111,28 +111,37 @@ class RegisterViewController: UIViewController {
             let pass = passText.text!
             let VerifyPass = valPass.text
             
-            if pass == VerifyPass {
-                Auth.auth().createUser(withEmail: email, password: pass) { authResult, error in
-                if let error = error
+            if (googleRegister == true)
+            {
+                self.createUser(provider: .Google)
+                
+            }else {
+                
+                if pass == VerifyPass {
+                    Auth.auth().createUser(withEmail: email, password: pass) { authResult, error in
+                        if let error = error
+                        {
+                            self.showMessage(type: "Error", message: error.localizedDescription)
+                            return
+                        }
+                        else {
+                            
+                            self.createUser(provider: .basic)
+                            
+                            return
+                            
+                        }
+                    }
+                }else
                 {
-                    self.showMessage(type: "Error", message: error.localizedDescription)
-                    return
-                }
-                else {
-                    self.showMessage(type: "Message", message: "User created successfully")
-                    self.createUser()
-                    return
-                    
+                    self.showMessage(type: "Error", message: "The password mismatch")
                 }
             }
-        }else
-            {
-            self.showMessage(type: "Error", message: "The password mismatch")
-        }
+            
         }
     }
     
-    private func createUser()
+    private func createUser(provider: LoginProvider)
     {
         let id = Auth.auth().currentUser!.uid
         let userName = emailText.text!
@@ -151,17 +160,24 @@ class RegisterViewController: UIViewController {
             Gender.unespecified
         }
         
-        let user = User(id: id, username: userName, firstName: name, lastName: lastName, gender: gender, birthday: birthDate, provider: .basic, profileImageUrl: "nil")
+        let user = User(id: id, username: userName, firstName: name, lastName: lastName, gender: gender, birthday: birthDate, provider: provider, profileImageUrl: "nil")
         
         let db = Firestore.firestore()
         do{
             try db.collection("Users").document(id).setData(from: user)
+            let destination: String
+            switch provider {
+            case .basic: destination = "goToAuth"
+            case .Google: destination = "goToHome"
+                
+            }
             
-            self.showMessage(type:"User Create", message: "Usser created succesfully")
+            self.showSuccesMessage(destination: destination)
+             
             
         } catch {
             self.showMessage(type: "Error", message: "Algo a ido mal")
-            
+            return
         }
         
         
@@ -171,12 +187,17 @@ class RegisterViewController: UIViewController {
     
     func validateForm() -> Bool
     {
-        let controls = [nameText,lastNameText,adresText,PhoneNumberText,emailText,passText,valPass]
+        let controls = [nameText,lastNameText,emailText]
+        
+        if googleRegister == false
+        {
+            let controls = [nameText,lastNameText,emailText,passText,valPass]}
+       
         
         for control in controls {
             if let text = control?.text , text.isEmpty
             {
-                showMessage(type:"Error", message: "Error writing user to Firestore")
+                showMessage(type:"Error", message: "Error writing user to Firestore, all data is needed")
                 return false
             }
         }
@@ -190,6 +211,16 @@ class RegisterViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func showSuccesMessage(destination: String)
+    {
+        let alert = UIAlertController(title: "User Create", message: "User created succesfully", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.performSegue(withIdentifier: destination, sender: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     
     

@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import GoogleSignIn
 import FirebaseAuth
+import FirebaseFirestore
 
 class InitViewController: UIViewController {
     
@@ -68,18 +69,39 @@ class InitViewController: UIViewController {
                 else {
                     print("auth")
                     guard let user = result?.user else {return}
+                    let db = Firestore.firestore()
+                    let docRef = db.collection("Users").document(user.uid)
                     
-                    SessionManager.shared.saveSession(user: user)
+                    docRef.getDocument{ (document, error) in
+                        if let error = error {
+                                    print("Error al obtener el documento: \(error.localizedDescription)")
+                                    return
+                                }
+                        
+                        if let document = document, !document.exists || user.metadata.creationDate == user.metadata.lastSignInDate
+                        {
+                            
+                            print("Redirigiendo a la pantalla de registro")
+                            self.performSegue(withIdentifier: "goToRegister", sender: self)
+                        } else {
+                            SessionManager.shared.saveSession(user: user)
+                            self.performSegue(withIdentifier: "goToHome", sender: self)
+                            
+                        }
+                        
+                        
+                    }
                     
                     // Verificar si es un usuario nuevo
-                    if user.metadata.creationDate == user.metadata.lastSignInDate {
+             /*       if user.metadata.creationDate == user.metadata.lastSignInDate  {
                         // Si es un usuario nuevo, redirigir a la pantalla de registro
-                        print("Nuevo usuario, redirigiendo a la pantalla de registro")
+                        print("Redirigiendo a la pantalla de registro")
                         self.performSegue(withIdentifier: "goToRegister", sender: self)
                     } else {
                         // Si ya es un usuario registrado, redirigir a la pantalla de inicio
+                        SessionManager.shared.saveSession(user: user)
                         self.performSegue(withIdentifier: "goToHome", sender: self)
-                    }
+                    }*/
                     
                     // Mostrar mensaje de éxito
                     self.alert.showMessage(type: "Message", message: "User Logged successfully")

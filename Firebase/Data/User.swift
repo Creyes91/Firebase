@@ -15,7 +15,7 @@ struct User: Codable
     var firstName: String
     var lastName: String
     var gender: Gender
-    var birthday: Date
+    var birthday: Date?
     var provider: LoginProvider
     var profileImageUrl: String
     
@@ -56,7 +56,7 @@ struct User: Codable
         try container.encode(firstName, forKey: .firstName)
         try container.encode(lastName, forKey: .lastName)
         try container.encode(gender.rawValue, forKey: .gender)
-        try container.encode(birthday.timeIntervalSince1970, forKey: .birthday)
+        try container.encode(birthday?.timeIntervalSince1970, forKey: .birthday)
         try container.encode(provider.rawValue, forKey: .provider)
         try container.encode(profileImageUrl, forKey: .profileImageUrl)
         
