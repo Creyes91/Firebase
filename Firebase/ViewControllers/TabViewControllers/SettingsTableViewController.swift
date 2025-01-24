@@ -191,7 +191,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
             
         }
         
-        self.navigationController?.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     
