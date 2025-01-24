@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestoreInternal
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     @IBOutlet weak var usernameFieldText: UILabel!
     @IBOutlet weak var lastNameFieldText: UILabel!
@@ -37,9 +37,77 @@ class SettingsTableViewController: UITableViewController {
             } catch {
                 print("Error decoding user: \(error)")
             }
-            }
+        }
+        
+        ProfileImage.layer.cornerRadius = ProfileImage.frame.size.width / 2
+        
+        
+        ProfileImage.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        ProfileImage.addGestureRecognizer(tapGesture)
+    }
+        @objc func imageTapped ()
+        {
+            showImageSourceOption()
             
         }
+        
+        func showImageSourceOption()
+        {
+            let alertController = UIAlertController(title: "Seleccionar Imagen", message: "Elige una fuente de imagen", preferredStyle: .actionSheet)
+
+                   // Opción de elegir la imagen desde la galería
+                   let galleryAction = UIAlertAction(title: "Galería", style: .default) { _ in
+                       self.openImagePicker(sourceType: .photoLibrary)
+                   }
+
+                   // Opción de usar la cámara
+                   let cameraAction = UIAlertAction(title: "Cámara", style: .default) { _ in
+                       self.openImagePicker(sourceType: .camera)
+                   }
+
+                   // Opción de cancelar
+                   let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+
+                   // Agregar las acciones al UIAlertController
+                   alertController.addAction(galleryAction)
+                   alertController.addAction(cameraAction)
+                   alertController.addAction(cancelAction)
+
+                   // Mostrar el UIAlertController
+                   present(alertController, animated: true, completion: nil)
+               }
+
+               // Función para abrir el UIImagePickerController con el sourceType adecuado
+               func openImagePicker(sourceType: UIImagePickerController.SourceType) {
+                   if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+                       let imagePickerController = UIImagePickerController()
+                       imagePickerController.delegate = self
+                       imagePickerController.sourceType = sourceType
+                       present(imagePickerController, animated: true, completion: nil)
+                   } else {
+                       // Si no se puede acceder a la cámara o galería, muestra una alerta
+                       let errorAlert = UIAlertController(title: "Error", message: "No se puede acceder a la fuente seleccionada.", preferredStyle: .alert)
+                       errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                       present(errorAlert, animated: true, completion: nil)
+                   }
+               }
+
+               // Delegate methods del UIImagePickerController
+               func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                   if let selectedImage = info[.originalImage] as? UIImage {
+                       ProfileImage.image = selectedImage
+                   }
+                   dismiss(animated: true, completion: nil)
+               }
+
+               func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+                   dismiss(animated: true, completion: nil)
+               }
+            
+        
+            
+        
         
         
         
