@@ -27,6 +27,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         let db = Firestore.firestore()
         let userID = Auth.auth().currentUser!.uid
         let docRef = db.collection("Users").document(userID)
+        ProfileImage.loadImageOfCache(forKey: "ProfileImage")
         
         Task {
             do {
@@ -40,7 +41,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
         }
         
         ProfileImage.layer.cornerRadius = ProfileImage.frame.size.width / 2
-        
+       
         
         ProfileImage.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
@@ -97,6 +98,19 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
                func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
                    if let selectedImage = info[.originalImage] as? UIImage {
                        ProfileImage.image = selectedImage
+                       ProfileImage.saveImageToCache(forkey: "ProfileImage")
+                       ProfileImage.uploadImageToStorage{ result in
+                           switch result {
+                           case .success(let imageUrl):
+                               print("Imagen subida con éxito. URL: \(imageUrl.absoluteString)")
+                                           // Aquí puedes hacer lo que quieras con la URL, como guardarla en Firestore o mostrarla en la UI
+                            case .failure(let error):
+                                print("Error al subir la imagen: \(error.localizedDescription)")
+                                           // Maneja el error, por ejemplo, mostrando un mensaje al usuario
+                                       
+                           }
+                           
+                       }
                    }
                    dismiss(animated: true, completion: nil)
                }
@@ -177,7 +191,7 @@ class SettingsTableViewController: UITableViewController, UIImagePickerControlle
             
         }
         
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.navigationController?.popToRootViewController(animated: true)
     }
     
     

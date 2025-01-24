@@ -13,6 +13,7 @@ target 'Firebase' do
 #  pod 'GoogleUtilities', '~> 7.0'
 
   pod 'FirebaseFirestore'
+  pod 'FirebaseStorage'
 #  pod 'gRPC-Core'
 #  pod 'BoringSSL-GRPC'
   post_install do |installer|
