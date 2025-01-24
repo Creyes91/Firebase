@@ -346,16 +346,32 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="muR-s8-JkW">
                                                     <rect key="frame" x="20" y="11" width="313" height="152"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cI6-A1-Ud7">
-                                                            <rect key="frame" x="0.0" y="1" width="145.66666666666666" height="150.66666666666666"/>
+                                                        <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hot-ny-Tgu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="145.66666666666666" height="152"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cI6-A1-Ud7">
+                                                                    <rect key="frame" x="8" y="1" width="129.66666666666666" height="98.666666666666671"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="100" id="oKm-XG-ldg"/>
+                                                                        <constraint firstAttribute="width" constant="100" id="zQA-Na-WKh"/>
+                                                                    </constraints>
+                                                                    <imageReference key="image" image="person.circle" catalog="system" variableValue="0.80000000000000004"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7E-52-4Ls">
+                                                                    <rect key="frame" x="50.666666666666671" y="108" width="44.333333333333329" height="44"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="G7k-D8-1Wa"/>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="XhW-t2-Q18"/>
-                                                                <constraint firstAttribute="width" constant="152" id="ahY-4a-fnP"/>
-                                                                <constraint firstAttribute="height" constant="152" id="wr2-Oc-ovl"/>
+                                                                <constraint firstItem="cI6-A1-Ud7" firstAttribute="leading" secondItem="hot-ny-Tgu" secondAttribute="leading" constant="8" id="8bi-z9-4KI"/>
+                                                                <constraint firstItem="cI6-A1-Ud7" firstAttribute="top" secondItem="hot-ny-Tgu" secondAttribute="top" constant="8" id="CN0-qt-HyP"/>
+                                                                <constraint firstAttribute="bottom" secondItem="W7E-52-4Ls" secondAttribute="bottom" id="Eim-6N-zh5"/>
+                                                                <constraint firstAttribute="trailing" secondItem="cI6-A1-Ud7" secondAttribute="trailing" constant="8" id="IV8-qG-2Xb"/>
+                                                                <constraint firstItem="W7E-52-4Ls" firstAttribute="top" secondItem="cI6-A1-Ud7" secondAttribute="bottom" id="aeT-cm-N76"/>
                                                             </constraints>
-                                                            <imageReference key="image" image="person.circle" catalog="system" variableValue="0.80000000000000004"/>
-                                                        </imageView>
+                                                        </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="zdv-qi-q4M">
                                                             <rect key="frame" x="167.66666666666663" y="0.0" width="145.33333333333337" height="152"/>
                                                             <subviews>
